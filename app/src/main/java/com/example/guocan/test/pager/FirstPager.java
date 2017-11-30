@@ -23,7 +23,6 @@ import com.gc.android_helper.app.Api;
 import com.gc.android_helper.app.BaseListViewAdapter;
 import com.gc.android_helper.app.BasePager;
 import com.gc.android_helper.app.LoadMoreHolder;
-import com.gc.android_helper.bean.ActionSheetParams;
 import com.gc.android_helper.bean.Banner;
 import com.gc.android_helper.dialog.ActionSheet;
 import com.gc.android_helper.core.CropHelper;
@@ -64,7 +63,6 @@ public class FirstPager extends BasePager<String> {
 
     private TestAdapter testAdapter;
 
-
     private List<Province> pickerItems;
 
     private String imagePath;
@@ -74,6 +72,7 @@ public class FirstPager extends BasePager<String> {
     public FirstPager(Context context) {
         super(context);
     }
+
     @Override
     protected View createView() {
         view = View.inflate(context, R.layout.refresh_listview_test, null);
@@ -120,15 +119,9 @@ public class FirstPager extends BasePager<String> {
             areaList.add(cityListArea);
         }
 
-        final ActionSheetParams actionSheetParams = new ActionSheetParams(view);
-        final ConfirmDialogParams confirmDialogParams = new ConfirmDialogParams();
-        final AlertDialogParams alertDialogParams = new AlertDialogParams();
-        actionSheetParams.setTitle("选择照片");
-        actionSheetParams.setButtions(new String[] { "手机相册", "拍照", "多图" });
         final PickerParams pickerParams = new PickerParams(view, pickerItems, cityList, areaList);
         pickerParams.setStr_Title("城市选择");
         pickerParams.setOption1(11);
-        final ProgressDialogParams progressDialogParams = new ProgressDialogParams();
 
         // pickerParams.setSize_Content(4);//有问题
         // pickerParams.setDividerColor(getActivity().getResources().getColor(R.color.ios_text_color));
@@ -142,32 +135,17 @@ public class FirstPager extends BasePager<String> {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 1) {// actioniSheet
-                    api.actionSheet(getActivity(), actionSheetParams, new ActionSheet.ActionSheetClickListener() {
-                        @Override
-                        public void onClick(int position) {
-                            if (position == 1) {
-                                api.getPicFromAlbum(FirstPager.this, 1);
-                            }
-                            if (position == 2) {
-                                // 打开相机 返回拍照图片路径
-                                imagePath = api.getPicFromCamera(FirstPager.this, 2);
-                            }
-                            if (position == 3) {
-                                CropHelper.pickImage(getActivity());
-                            }
-                        }
-                    });
+
                 }
                 if (position == 2) {// alert
-                    api.alert(getActivity(), alertDialogParams);
+
                 }
                 if (position == 3) {// confirm
-                    api.comfirm(getActivity(), confirmDialogParams);
+
                 }
                 if (position == 4) {// pickerview
                     api.picker(getActivity(), pickerParams);
                 }
-
             }
         });
         return view;

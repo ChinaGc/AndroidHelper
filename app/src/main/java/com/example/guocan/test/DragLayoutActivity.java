@@ -9,7 +9,6 @@ import android.widget.ListView;
 
 import com.gc.android_helper.app.Api;
 import com.gc.android_helper.app.BaseActivity;
-import com.gc.android_helper.bean.ActionSheetParams;
 import com.gc.android_helper.dialog.ActionSheet;
 import com.gc.android_helper.view.customer.DragLayout;
 
@@ -61,29 +60,5 @@ public class DragLayoutActivity extends BaseActivity {
         TestAdapter testAdapter = new TestAdapter(data);
         left_listview.setAdapter(testAdapter);
         main_listview.setAdapter(testAdapter);
-
-        left_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                drag_layout.close(true);
-                Api.getInstance().comfirm(DragLayoutActivity.this, new ConfirmDialogParams());
-            }
-        });
-        final ActionSheetParams actionSheetParams = new ActionSheetParams(view);
-        actionSheetParams.setTitle("分享到");
-        actionSheetParams.setButtions(new String[] { "QQ空间", "朋友圈", "新浪微博" });
-        main_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                drag_layout.open(true);
-
-                Api.getInstance().actionSheet(DragLayoutActivity.this, actionSheetParams, new ActionSheet.ActionSheetClickListener() {
-                    @Override
-                    public void onClick(int position) {
-                        Api.getInstance().toast("点击了" + position);
-                    }
-                });
-            }
-        });
     }
 }

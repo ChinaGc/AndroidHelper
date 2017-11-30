@@ -14,7 +14,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.widget.Toast;
 
-import com.gc.android_helper.bean.ActionSheetParams;
 import com.gc.android_helper.listener.OnPermissionsResultListener;
 import com.gc.android_helper.dialog.ActionSheet;
 import com.gc.android_helper.core.DownLoadMannger;
@@ -99,15 +98,8 @@ public class Api {
         fixedThreadPool.execute(runnable);
     }
 
-    public void actionSheet(Activity activity, ActionSheetParams actionSheetParams, ActionSheet.ActionSheetClickListener actionSheetClickListener) {
+    public void actionSheet() {
 
-//        if (actionSheetActivityMap.get(activity) != null) {
-//            actionSheet = actionSheetActivityMap.get(activity);
-//        } else {
-//            actionSheet = new ActionSheet(activity);
-//            actionSheetActivityMap.put(activity, actionSheet);
-//        }
-        actionSheet.actionSheet(actionSheetParams, actionSheetClickListener);
     }
 
     public void comfirm(Activity activity) {
