@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.example.guocan.test.R;
 import com.gc.android_helper.app.BaseViewHolder;
-import com.gc.android_helper.util.ImageLoader;
+import com.gc.android_helper.core.ImageLoader;
 
 /**
  * Created by 郭灿 on 2017/3/27.

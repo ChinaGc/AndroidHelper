@@ -10,7 +10,6 @@ import android.widget.ListView;
 import com.gc.android_helper.app.Api;
 import com.gc.android_helper.app.BaseActivity;
 import com.gc.android_helper.bean.ActionSheetParams;
-import com.gc.android_helper.bean.ConfirmDialogParams;
 import com.gc.android_helper.dialog.ActionSheet;
 import com.gc.android_helper.view.customer.DragLayout;
 

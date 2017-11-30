@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.gc.android_helper.app.BasePager;
-import com.gc.android_helper.util.DownLoadMannger;
+import com.gc.android_helper.core.DownLoadMannger;
 
 /**
  * Created by 郭灿 on 2017/3/29.

@@ -1,7 +1,6 @@
 package com.gc.android_helper.app;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -13,19 +12,13 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.gc.android_helper.bean.ActionSheetParams;
-import com.gc.android_helper.bean.AlertDialogParams;
-import com.gc.android_helper.bean.ConfirmDialogParams;
-import com.gc.android_helper.bean.ProgressDialogParams;
-import com.gc.android_helper.dialog.IosAlertDialog;
-import com.gc.android_helper.dialog.IosConfirmDialog;
 import com.gc.android_helper.listener.OnPermissionsResultListener;
 import com.gc.android_helper.dialog.ActionSheet;
-import com.gc.android_helper.util.DownLoadMannger;
-import com.gc.android_helper.util.ImageLoader;
+import com.gc.android_helper.core.DownLoadMannger;
+import com.gc.android_helper.core.ImageLoader;
 import com.gc.android_helper.util.ImageUtil;
 import com.gc.android_helper.view.picker.Picker;
 import com.gc.android_helper.view.picker.PickerParams;
@@ -35,42 +28,22 @@ import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.ResponseHandlerInterface;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import cz.msebera.android.httpclient.conn.ssl.SSLSocketFactory;
 
 /**
  * api核心类
  * 
- * @author guocan
+ * @author 郭灿
  *
  */
-@SuppressLint("ResourceAsColor")
 public class Api {
 
     private static Api i = null;
 
-    /**
-     * UI
-     */
     private ActionSheet actionSheet;
 
-    private Map<Activity, ActionSheet> actionSheetActivityMap = new HashMap<Activity, ActionSheet>();
-
-    private IosConfirmDialog confirmDialog;
-
-    private Map<Activity, IosConfirmDialog> confirmDialogActivityMap = new HashMap<Activity, IosConfirmDialog>();
-
-    private IosAlertDialog alertDialog;
-
-    private Map<Activity, IosAlertDialog> alertDialogActivityMap = new HashMap<Activity, IosAlertDialog>();
-
     private Picker picker;
-
-    private Map<Activity, Picker> pickerMActivityMap = new HashMap<Activity, Picker>();
 
     private AsyncHttpClient asyncHttpClient;
 
@@ -127,59 +100,31 @@ public class Api {
     }
 
     public void actionSheet(Activity activity, ActionSheetParams actionSheetParams, ActionSheet.ActionSheetClickListener actionSheetClickListener) {
-        Log.i("API", "actionSheetActivityMap.size = " + actionSheetActivityMap.size());
-        if (actionSheetActivityMap.get(activity) != null) {
-            actionSheet = actionSheetActivityMap.get(activity);
-        } else {
-            actionSheet = new ActionSheet(activity);
-            actionSheetActivityMap.put(activity, actionSheet);
-        }
+
+//        if (actionSheetActivityMap.get(activity) != null) {
+//            actionSheet = actionSheetActivityMap.get(activity);
+//        } else {
+//            actionSheet = new ActionSheet(activity);
+//            actionSheetActivityMap.put(activity, actionSheet);
+//        }
         actionSheet.actionSheet(actionSheetParams, actionSheetClickListener);
     }
 
-    public void comfirm(Activity activity, ConfirmDialogParams confirmDialogParams) {
-        Log.i("API", "confirmDialogActivityMap.size = " + confirmDialogActivityMap.size());
-        if (confirmDialogParams == null) {
-            confirmDialogParams = new ConfirmDialogParams();
-        }
-        if (confirmDialogActivityMap.get(activity) != null) {
-            confirmDialog = confirmDialogActivityMap.get(activity);
-        } else {
-            confirmDialog = new IosConfirmDialog(activity).builder();
-            confirmDialogActivityMap.put(activity, confirmDialog);
-        }
-        confirmDialog.setTitle(confirmDialogParams.getTitle());
-        confirmDialog.setMsg(confirmDialogParams.getMsg());
-        confirmDialog.setNegativeButton(confirmDialogParams.getLeftBtnText(), confirmDialogParams.getLeftOnClickListener());
-        confirmDialog.setPositiveButton(confirmDialogParams.getRightBtnText(), confirmDialogParams.getRightOnClickListener());
-        confirmDialog.show();
+    public void comfirm(Activity activity) {
+
     }
 
-    public void alert(Activity activity, AlertDialogParams alertDialogParams) {
-        if (alertDialogParams == null) {
-            alertDialogParams = new AlertDialogParams();
-        }
-        Log.i("API", "alertDialogActivityMap.size = " + alertDialogActivityMap.size());
-        if (alertDialogActivityMap.get(activity) != null) {
-            alertDialog = alertDialogActivityMap.get(activity);
-        } else {
-            alertDialog = new IosAlertDialog(activity).builder();
-            alertDialogActivityMap.put(activity, alertDialog);
-        }
-        alertDialog.setTitle(alertDialogParams.getTitle());
-        alertDialog.setMsg(alertDialogParams.getMsg());
-        alertDialog.setButton(alertDialogParams.getBtnText(), alertDialogParams.getBtnnClickListener());
-        alertDialog.show();
+    public void alert(Activity activity) {
+
     }
 
     public void picker(Activity activity, PickerParams pickerParams) {
-        Log.i("API", "PickerActivityMap.size = " + pickerMActivityMap.size());
-        if (pickerMActivityMap.get(activity) != null) {
-            picker = pickerMActivityMap.get(activity);
-        } else {
-            picker = new Picker(activity);
-            pickerMActivityMap.put(activity, picker);
-        }
+//        if (pickerMActivityMap.get(activity) != null) {
+//            picker = pickerMActivityMap.get(activity);
+//        } else {
+//            picker = new Picker(activity);
+//            pickerMActivityMap.put(activity, picker);
+//        }
         picker.picker(pickerParams);
     }
 
@@ -218,14 +163,6 @@ public class Api {
         asyncHttpClient.post(url, requestParams, handlerInterface);
     }
 
-    /**
-     * https双向加密连接器
-     * 
-     * @param sslSocketFactory
-     */
-    public void setSSl(SSLSocketFactory sslSocketFactory) {
-        asyncHttpClient.setSSLSocketFactory(sslSocketFactory);
-    }
 
 	/**
 	 * @param fileName
@@ -467,14 +404,10 @@ public class Api {
         i = null;
         BaseApplication application = (BaseApplication) getContext();
         application.clearAllActivity();
-        this.confirmDialogActivityMap.clear();
-        this.actionSheetActivityMap.clear();
-        this.alertDialogActivityMap.clear();
     }
 
     public void exitApp() {
         destory();
         System.exit(0);
     }
-
 }
