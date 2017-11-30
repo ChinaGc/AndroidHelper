@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <color name="white">#ffffff</color>
+     <color name="botoom_bg">#44000000</color>
+     <color name="dialog_title">#666</color>
+     <color name="dialog_msg">#333</color>
+     <color name="dialog_line">#aaa</color>
+     <color name="dialog_button_pressed">#eee</color>
+     <color name="dialog_button_unpressed">#ffffff</color>
+     <color name="ios_text_color">#007aff</color>
+
+     <!--pickerview-->
+     <color name="pickerview_timebtn_nor">#007aff</color>
+     <color name="pickerview_timebtn_pre">#c2daf5</color>
+     <color name="pickerview_bg_topbar">#f5f5f5</color>
+
+     <color name="pickerview_topbar_title">#000000</color>
+     <color name="pickerview_wheelview_textcolor_out">#a8a8a8</color>
+     <color name="pickerview_wheelview_textcolor_center">#2a2a2a</color>
+     <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
+     <color name="pickerview_bgColor_overlay">#60000000</color>
+     <color name="pickerview_bgColor_default">#FFFFFFFF</color>
+     <!--progress dialog-->
+     <color name="progress_dialog_bg">#99000000</color>
+</resources>

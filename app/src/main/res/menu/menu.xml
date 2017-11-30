@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<item android:id="@+id/action_compose"
+      android:icon="@android:drawable/ic_delete"
+      android:showAsAction="ifRoom"
+      android:title="aaa"
+    >
+
+</item>
+
+    <item android:id="@+id/action_compose1"
+          android:icon="@android:drawable/ic_delete"
+          android:showAsAction="ifRoom"
+          android:title="aaa"
+        >
+
+    </item>
+    <item android:id="@+id/action_compose2"
+          android:icon="@android:drawable/ic_delete"
+          android:showAsAction="ifRoom"
+          android:title="aaa"
+        >
+
+    </item>
+</menu>
