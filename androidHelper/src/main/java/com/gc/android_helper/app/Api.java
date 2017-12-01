@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import com.gc.android_helper.listener.OnPermissionsResultListener;
 import com.gc.android_helper.dialog.ActionSheet;
-import com.gc.android_helper.core.DownLoadMannger;
-import com.gc.android_helper.core.ImageLoader;
 import com.gc.android_helper.util.ImageUtil;
 import com.gc.android_helper.view.picker.Picker;
 import com.gc.android_helper.view.picker.PickerParams;

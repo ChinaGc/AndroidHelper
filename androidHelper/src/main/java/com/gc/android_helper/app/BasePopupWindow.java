@@ -1,4 +1,4 @@
-package com.gc.android_helper.core;
+package com.gc.android_helper.app;
 
 import android.animation.ValueAnimator;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,18 +16,17 @@ import com.gc.android_helper.util.LengthUtil;
 import com.gc.androidhelper.R;
 
 /**
- * PopupWindowHelper 用于做从底部弹出的popupWindow Created by guocan on 2017/3/9.
+ * BasePopupWindow 用于做从底部弹出的popupWindow Created by guocan on 2017/3/9.
  */
 
-public class PopupWindowHelper implements PopupWindow.OnDismissListener {
-
-    private static PopupWindowHelper popupWindowHelper = null;
+public abstract class BasePopupWindow implements PopupWindow.OnDismissListener {
 
     private PopupWindow popupWindow;
 
-    private static Window window = null;
+    private  Window window = null;
 
-    private PopupWindowHelper() {
+    protected BasePopupWindow(Window window) {
+        this.window = window;
         popupWindow = new PopupWindow(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         // 设置背景,这个没什么效果，不添加会报错
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -38,21 +37,11 @@ public class PopupWindowHelper implements PopupWindow.OnDismissListener {
         popupWindow.setAnimationStyle(R.style.bottomInWindow);
         // 设置消失监听
         popupWindow.setOnDismissListener(this);
+        popupWindow.setContentView(getContentView());
     }
-    //获取单实例
-    public static PopupWindowHelper getInstance(Window window) {
-        PopupWindowHelper.window = window;
-        return getInstance();
-    }
-    //获取单实例
-    public static PopupWindowHelper getInstance() {
-        if (popupWindowHelper == null) {
-            popupWindowHelper = new PopupWindowHelper();
-        }
-        return popupWindowHelper;
-    }
+
     //显示
-    public void showPopupWindow(View popupWindowView, View parentView) {
+    public void showPopupWindow(View parentView) {
         // 防止重复按按钮
         if (popupWindow != null && popupWindow.isShowing()) {
             return;
@@ -61,7 +50,6 @@ public class PopupWindowHelper implements PopupWindow.OnDismissListener {
         setBackgroundAlpha(1, 0.5f);
         // 设置位置
         popupWindow.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
-
     }
     //隐藏
     public void hide(){
@@ -82,7 +70,7 @@ public class PopupWindowHelper implements PopupWindow.OnDismissListener {
 
     private ValueAnimator valueAnimatorOut;
     //设置背景透明度
-    public void setBackgroundAlpha(float alpha, float target) {
+    private void setBackgroundAlpha(float alpha, float target) {
         if (window != null) {
             if (alpha > target) {// in
                 if (valueAnimatorIn == null) {
@@ -117,4 +105,6 @@ public class PopupWindowHelper implements PopupWindow.OnDismissListener {
             window.setAttributes(window.getAttributes());
         }
     }
+    //popupWindow显示的View
+    protected abstract View getContentView();
 }

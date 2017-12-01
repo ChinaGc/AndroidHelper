@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.gc.android_helper.core.PopupWindowHelper;
 import com.gc.android_helper.util.LengthUtil;
 import com.gc.androidhelper.R;
 
@@ -22,7 +21,7 @@ import static com.gc.androidhelper.R.id.action_listview;
  * @Description: 仿IOS底部弹出选择器 基于Popwindow
  * @date 2017/11/30
  */
-public class ActionSheet implements View.OnClickListener{
+public class ActionSheet extends implements View.OnClickListener{
 
     private static ActionSheet sheet = null;
 
@@ -31,7 +30,6 @@ public class ActionSheet implements View.OnClickListener{
     private TextView titleView,cancelView;
     private LinearLayout buttonsView;
 
-    private PopupWindowHelper popupWindowHelper = null;
 
     private Context context;
     private ActionSheet(Window window) {

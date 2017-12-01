@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import com.gc.android_helper.app.Api;
 import com.gc.android_helper.bean.Banner;
-import com.gc.android_helper.core.ImageLoader;
+import com.gc.android_helper.app.ImageLoader;
 
 import java.util.List;
 
