@@ -1,18 +1,13 @@
-package com.gc.android_helper.app;
+package com.gc.android_helper.core;
 
 import android.animation.ValueAnimator;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.gc.android_helper.util.LengthUtil;
 import com.gc.androidhelper.R;
 
 /**
@@ -37,11 +32,10 @@ public abstract class BasePopupWindow implements PopupWindow.OnDismissListener {
         popupWindow.setAnimationStyle(R.style.bottomInWindow);
         // 设置消失监听
         popupWindow.setOnDismissListener(this);
-        popupWindow.setContentView(getContentView());
     }
-
     //显示
     public void showPopupWindow(View parentView) {
+        popupWindow.setContentView(getContentView());
         // 防止重复按按钮
         if (popupWindow != null && popupWindow.isShowing()) {
             return;

@@ -11,10 +11,10 @@ import android.widget.ListView;
 
 import com.example.guocan.test.DragLayoutActivity;
 import com.example.guocan.test.R;
-import com.gc.android_helper.app.Api;
-import com.gc.android_helper.app.BaseListViewAdapter;
-import com.gc.android_helper.app.BasePager;
-import com.gc.android_helper.app.LoadMoreHolder;
+import com.gc.android_helper.core.Api;
+import com.gc.android_helper.core.BaseListViewAdapter;
+import com.gc.android_helper.core.BasePager;
+import com.gc.android_helper.core.LoadMoreHolder;
 import com.gc.android_helper.bean.Banner;
 import com.gc.android_helper.util.LengthUtil;
 import com.gc.android_helper.view.customer.AutoScrollViewPager;

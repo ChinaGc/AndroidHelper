@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import com.example.guocan.test.pager.DownPager;
 import com.example.guocan.test.pager.FirstPager;
 import com.example.guocan.test.pager.UItraPtrPager;
-import com.gc.android_helper.app.Api;
-import com.gc.android_helper.app.BaseActivity;
+import com.gc.android_helper.core.Api;
+import com.gc.android_helper.core.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 

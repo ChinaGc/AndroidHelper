@@ -5,7 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.gc.android_helper.app.MSwipeBackActivity;
+import com.gc.android_helper.core.MSwipeBackActivity;
 import com.gc.androidhelper.R;
 
 import me.imid.swipebacklayout.lib.Utils;

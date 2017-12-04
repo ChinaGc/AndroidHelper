@@ -1,4 +1,4 @@
-package com.gc.android_helper.app;
+package com.gc.android_helper.core;
 
 /**
  * Created by gc on 2017/6/9/009.

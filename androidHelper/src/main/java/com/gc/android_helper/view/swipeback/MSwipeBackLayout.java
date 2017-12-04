@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.gc.android_helper.app.MSwipeBackActivity;
+import com.gc.android_helper.core.MSwipeBackActivity;
 import com.gc.androidhelper.R;
 
 import java.util.ArrayList;

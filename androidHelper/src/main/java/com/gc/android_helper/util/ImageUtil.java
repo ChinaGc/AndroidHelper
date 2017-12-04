@@ -10,8 +10,8 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 
-import com.gc.android_helper.app.Api;
-import com.gc.android_helper.app.BasePager;
+import com.gc.android_helper.core.Api;
+import com.gc.android_helper.core.BasePager;
 
 import java.io.File;
 import java.io.FileNotFoundException;

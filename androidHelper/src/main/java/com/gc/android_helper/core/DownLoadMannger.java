@@ -1,4 +1,4 @@
-package com.gc.android_helper.app;
+package com.gc.android_helper.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,7 +1,7 @@
 package adapter;
 
-import com.gc.android_helper.app.BaseListViewAdapter;
-import com.gc.android_helper.app.BaseViewHolder;
+import com.gc.android_helper.core.BaseListViewAdapter;
+import com.gc.android_helper.core.BaseViewHolder;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.gc.android_helper.app;
+package com.gc.android_helper.core;
 
 /**
  * @author 郭灿

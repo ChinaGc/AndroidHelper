@@ -1,4 +1,4 @@
-package com.gc.android_helper.app;
+package com.gc.android_helper.core;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

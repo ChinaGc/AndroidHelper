@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gc.android_helper.core.BasePopupWindow;
 import com.gc.android_helper.util.LengthUtil;
 import com.gc.androidhelper.R;
 
@@ -21,7 +22,7 @@ import static com.gc.androidhelper.R.id.action_listview;
  * @Description: 仿IOS底部弹出选择器 基于Popwindow
  * @date 2017/11/30
  */
-public class ActionSheet extends implements View.OnClickListener{
+public class ActionSheet extends BasePopupWindow implements View.OnClickListener{
 
     private static ActionSheet sheet = null;
 
@@ -33,13 +34,18 @@ public class ActionSheet extends implements View.OnClickListener{
 
     private Context context;
     private ActionSheet(Window window) {
+        super(window);
         this.context = window.getContext();
-        popupWindowHelper = PopupWindowHelper.getInstance(window);
         this.actionView = View.inflate(context, R.layout.action_sheet,null);
         titleView = (TextView) actionView.findViewById(R.id.title);
         cancelView = (TextView) actionView.findViewById(R.id.tv_cancel);
         buttonsView = (LinearLayout) actionView.findViewById(action_listview);
     }
+    @Override
+    protected View getContentView() {
+        return actionView;
+    }
+
     //获取单实例
     public static ActionSheet getInstance(Window window) {
         if(sheet==null){
@@ -74,12 +80,12 @@ public class ActionSheet extends implements View.OnClickListener{
                 textView.setBackgroundResource(R.drawable.actionsheet_text_halfang_bg);
             }
         }
-        this.popupWindowHelper.showPopupWindow(actionView,parentView);
+        showPopupWindow(parentView);
     }
     //取消按钮被点击
     @Override
     public void onClick(View v) {
-        popupWindowHelper.hide();
+        hide();
     }
 
     //用户点击回调
