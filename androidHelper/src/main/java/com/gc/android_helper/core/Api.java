@@ -18,7 +18,6 @@ import com.gc.android_helper.listener.OnPermissionsResultListener;
 import com.gc.android_helper.dialog.ActionSheet;
 import com.gc.android_helper.util.ImageUtil;
 import com.gc.android_helper.view.picker.Picker;
-import com.gc.android_helper.view.picker.PickerParams;
 import com.guocan.file.FileHelper;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
@@ -95,29 +94,6 @@ public class Api {
     public void execute(Runnable runnable) {
         fixedThreadPool.execute(runnable);
     }
-
-    public void actionSheet() {
-
-    }
-
-    public void comfirm(Activity activity) {
-
-    }
-
-    public void alert(Activity activity) {
-
-    }
-
-    public void picker(Activity activity, PickerParams pickerParams) {
-//        if (pickerMActivityMap.get(activity) != null) {
-//            picker = pickerMActivityMap.get(activity);
-//        } else {
-//            picker = new Picker(activity);
-//            pickerMActivityMap.put(activity, picker);
-//        }
-        picker.picker(pickerParams);
-    }
-
     /**
      * toast
      * 

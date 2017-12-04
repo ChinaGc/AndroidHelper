@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.gc.android_helper.core.PopupWindowHelper;
+import com.gc.android_helper.core.BasePopupWindow;
 import com.gc.android_helper.view.picker.PickerParams;
 import com.gc.android_helper.view.picker.view.WheelOptions;
 import com.gc.androidhelper.R;
@@ -21,7 +21,7 @@ import com.gc.androidhelper.R;
  * @Description: 仿IOS支持三级联动的选择器
  * @date 2017/11/30
  */
-public class PickerDialog implements View.OnClickListener {
+public class PickerDialog extends BasePopupWindow implements View.OnClickListener {
 
     private static PickerDialog pickerDialog = null;
 
@@ -37,16 +37,18 @@ public class PickerDialog implements View.OnClickListener {
 
     private LinearLayout optionsPicker;
 
-    private PopupWindowHelper popupWindowHelper = null;
-
     private PickerParams pickerParams = null;
 
     private Context context;
 
     private PickerDialog(Window window) {
+        super(window);
         this.context = window.getContext();
-        popupWindowHelper = PopupWindowHelper.getInstance();
         initView();
+    }
+    @Override
+    protected View getContentView() {
+        return pickerView;
     }
 
     private void initView() {
@@ -85,25 +87,24 @@ public class PickerDialog implements View.OnClickListener {
         btnCancel.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.getResources().getDimensionPixelSize(R.dimen.font_normal));
         tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, context.getResources().getDimensionPixelSize(R.dimen.font_large));
         optionsPicker.setBackgroundColor(context.getResources().getColor(R.color.pickerview_bgColor_default));
-        // wheelOptions.setTextContentSizeSp(
-        // pickerParams.getSize_Content()==0?(int)context.getResources().getDimension(R.dimen.font_small):pickerParams.getSize_Content());
+         wheelOptions.setTextContentSizeSp((int)context.getResources().getDimension(R.dimen.font_small));
         if (pickerParams.isLinkage()) {
             wheelOptions.setPicker(pickerParams.getOptions1Items(), pickerParams.getOptions2Items(), pickerParams.getOptions3Items());
         } else {
             wheelOptions.setNPicker(pickerParams.getOptions1Items(), pickerParams.getOptions2Items(), pickerParams.getOptions3Items());
         }
         setDefaultSelected(pickerParams);
-        wheelOptions.setLabels(pickerParams.getLabel1(), pickerParams.getLabel2(), pickerParams.getLabel3());
+       // wheelOptions.setLabels(pickerParams.getLabel1(), pickerParams.getLabel2(), pickerParams.getLabel3());
         wheelOptions.setCyclic(pickerParams.isCyclic1(), pickerParams.isCyclic2(), pickerParams.isCyclic3());
         wheelOptions.setTypeface(pickerParams.getFont());
         // 有默认值
-        wheelOptions.setDividerColor(pickerParams.getDividerColor());
-        wheelOptions.setDividerType(pickerParams.getDividerType());
-        wheelOptions.setLineSpacingMultiplier(pickerParams.getLineSpacingMultiplier());
-        wheelOptions.setTextColorOut(pickerParams.getTextColorOut());
-        wheelOptions.setTextColorCenter(pickerParams.getTextColorCenter());
-        wheelOptions.isCenterLabel(pickerParams.isCenterLabel());
-        this.popupWindowHelper.showPopupWindow(pickerView,pickerParams.getParentView());
+//        wheelOptions.setDividerColor(pickerParams.getDividerColor());
+//        wheelOptions.setDividerType(pickerParams.getDividerType());
+//        wheelOptions.setLineSpacingMultiplier(pickerParams.getLineSpacingMultiplier());
+//        wheelOptions.setTextColorOut(pickerParams.getTextColorOut());
+//        wheelOptions.setTextColorCenter(pickerParams.getTextColorCenter());
+//        wheelOptions.isCenterLabel(pickerParams.isCenterLabel());
+        showPopupWindow(pickerParams.getParentView());
     }
 
     //设置默认选中项
@@ -119,6 +120,6 @@ public class PickerDialog implements View.OnClickListener {
                 pickerParams.getOptionsSelectListener().onOptionsSelect(optionsCurrentItems[0], optionsCurrentItems[1], optionsCurrentItems[2], v);
             }
         }
-        popupWindowHelper.hide();
+       hide();
     }
 }

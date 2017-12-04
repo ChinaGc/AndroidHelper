@@ -99,6 +99,10 @@ public abstract class BasePopupWindow implements PopupWindow.OnDismissListener {
             window.setAttributes(window.getAttributes());
         }
     }
-    //popupWindow显示的View
+
+    /**
+     * show方法被调用时会被回调
+     * @return
+     */
     protected abstract View getContentView();
 }
