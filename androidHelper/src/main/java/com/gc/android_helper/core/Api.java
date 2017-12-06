@@ -15,9 +15,8 @@ import android.support.v4.content.FileProvider;
 import android.widget.Toast;
 
 import com.gc.android_helper.listener.OnPermissionsResultListener;
-import com.gc.android_helper.dialog.ActionSheet;
 import com.gc.android_helper.util.ImageUtil;
-import com.gc.android_helper.view.picker.Picker;
+
 import com.guocan.file.FileHelper;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
@@ -36,10 +35,6 @@ import java.util.concurrent.Executors;
 public class Api {
 
     private static Api i = null;
-
-    private ActionSheet actionSheet;
-
-    private Picker picker;
 
     private AsyncHttpClient asyncHttpClient;
 

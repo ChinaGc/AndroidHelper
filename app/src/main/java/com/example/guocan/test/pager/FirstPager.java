@@ -25,11 +25,14 @@ import com.gc.android_helper.core.BasePager;
 import com.gc.android_helper.core.LoadMoreHolder;
 import com.gc.android_helper.bean.Banner;
 import com.gc.android_helper.core.CropHelper;
+import com.gc.android_helper.dialog.ActionSheet;
+import com.gc.android_helper.dialog.DialogManager;
+import com.gc.android_helper.dialog.PickerDialog;
 import com.gc.android_helper.util.LengthUtil;
 import com.gc.android_helper.view.customer.AutoScrollViewPager;
 import com.gc.android_helper.view.customer.BannerView;
 import com.gc.android_helper.view.customer.VpSwipeRefreshLayout;
-import com.gc.android_helper.view.picker.Picker;
+
 import com.gc.android_helper.view.picker.PickerParams;
 import com.gc.android_helper.view.picker.entity.City;
 import com.gc.android_helper.view.picker.entity.Province;
@@ -121,10 +124,7 @@ public class FirstPager extends BasePager<String> {
         final PickerParams pickerParams = new PickerParams(view, pickerItems, cityList, areaList);
         pickerParams.setStr_Title("城市选择");
         pickerParams.setOption1(11);
-
-        // pickerParams.setSize_Content(4);//有问题
-        // pickerParams.setDividerColor(getActivity().getResources().getColor(R.color.ios_text_color));
-        pickerParams.setOptionsSelectListener(new Picker.OnOptionsSelectListener() {
+        pickerParams.setOptionsSelectListener(new PickerParams.OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 api.toast(pickerItems.get(options1).getName() + cityList.get(options1).get(options2).getName() + areaList.get(options1).get(options2).get(options3));
@@ -134,16 +134,21 @@ public class FirstPager extends BasePager<String> {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 1) {// actioniSheet
-
+                    ActionSheet.getInstance(getActivity().getWindow()).show(new String[]{"item1", "item2","item3"}, view, new ActionSheet.OnItemClickListener() {
+                        @Override
+                        public void onClick(int position) {
+                            api.toast("点击了"+position);
+                        }
+                    });
                 }
                 if (position == 2) {// alert
 
                 }
                 if (position == 3) {// confirm
-
+                    DialogManager.getInstance(getActivity()).showConfirmDialog();
                 }
                 if (position == 4) {// pickerview
-                    api.picker(getActivity(), pickerParams);
+                    PickerDialog.getInstance(getActivity().getWindow()).show(pickerParams);
                 }
             }
         });

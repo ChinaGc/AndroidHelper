@@ -12,7 +12,7 @@
         
         android:orientation="vertical">
 
-        <TextView
+        <!--<TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,8 +20,8 @@
             android:padding="13dp"
             android:text="提示"
             android:textColor="@color/dialog_title"
-            android:background="@drawable/actionsheet_tophalfang_unpressed"
-            android:textSize="@dimen/font_small" />
+            android:background="@drawable/actionsheet_topcircle_unpressed"
+            android:textSize="@dimen/font_small" />-->
 
         <View
             android:layout_width="match_parent"
@@ -75,7 +75,7 @@
             android:textColor="@color/ios_text_color"
             android:textSize="@dimen/font_normal"
             android:textStyle="bold"
-            android:background="@drawable/actionsheet_text_bg"
+            android:background="@drawable/actionsheet_btn_circle_bg"
              />
     </LinearLayout>
 </LinearLayout>

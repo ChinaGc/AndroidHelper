@@ -108,7 +108,7 @@ public class PickerDialog extends BasePopupWindow implements View.OnClickListene
     }
 
     //设置默认选中项
-    public void setDefaultSelected(PickerParams pickerParams) {
+    private void setDefaultSelected(PickerParams pickerParams) {
         wheelOptions.setCurrentItems(pickerParams.getOption1(), pickerParams.getOption2(), pickerParams.getOption3());
     }
     @Override

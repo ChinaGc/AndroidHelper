@@ -1,3 +1,4 @@
+/*
 package com.gc.android_helper.view.picker;
 
 import android.animation.ValueAnimator;
@@ -18,9 +19,11 @@ import com.gc.android_helper.view.picker.PickerParams;
 import com.gc.android_helper.view.picker.view.WheelOptions;
 import com.gc.androidhelper.R;
 
+*/
 /**
  * Created by 郭灿 on 2017/5/29.
- */
+ *//*
+
 
 public class Picker<T> implements View.OnClickListener, PopupWindow.OnDismissListener {
 
@@ -65,11 +68,13 @@ public class Picker<T> implements View.OnClickListener, PopupWindow.OnDismissLis
         btnCancel.setOnClickListener(this);
     }
 
-    /**
+    */
+/**
      * 设置并展示数据
      * 
      * @param pickerParams
-     */
+     *//*
+
     public void picker(PickerParams pickerParams) {
         if (popupWindow != null && popupWindow.isShowing()) {
             return;
@@ -134,21 +139,25 @@ public class Picker<T> implements View.OnClickListener, PopupWindow.OnDismissLis
 
     }
 
-    /**
+    */
+/**
      * 设置默认选中项
      * 
      * @param pickerParams
-     */
+     *//*
+
     public void setDefaultSelected(PickerParams pickerParams) {
         wheelOptions.setCurrentItems(pickerParams.getOption1(), pickerParams.getOption2(), pickerParams.getOption3());
     }
 
-    /**
+    */
+/**
      * Called when a view has been clicked.
      *
      * @param v
      *            The view that was clicked.
-     */
+     *//*
+
     @Override
     public void onClick(View v) {
         if (v == btnSubmit) {
@@ -161,9 +170,11 @@ public class Picker<T> implements View.OnClickListener, PopupWindow.OnDismissLis
         popupWindow.dismiss();
     }
 
-    /**
+    */
+/**
      * 选中callback
-     */
+     *//*
+
     public interface OnOptionsSelectListener {
         void onOptionsSelect(int options1, int options2, int options3, View v);
     }
@@ -216,3 +227,4 @@ public class Picker<T> implements View.OnClickListener, PopupWindow.OnDismissLis
         }
     }
 }
+*/

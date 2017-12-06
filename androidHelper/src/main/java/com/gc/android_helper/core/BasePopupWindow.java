@@ -34,7 +34,7 @@ public abstract class BasePopupWindow implements PopupWindow.OnDismissListener {
         popupWindow.setOnDismissListener(this);
     }
     //显示
-    public void showPopupWindow(View parentView) {
+    protected void showPopupWindow(View parentView) {
         popupWindow.setContentView(getContentView());
         // 防止重复按按钮
         if (popupWindow != null && popupWindow.isShowing()) {
@@ -46,7 +46,7 @@ public abstract class BasePopupWindow implements PopupWindow.OnDismissListener {
         popupWindow.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
     }
     //隐藏
-    public void hide(){
+    protected void hide(){
         this.popupWindow.dismiss();
     }
 
