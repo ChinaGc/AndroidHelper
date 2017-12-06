@@ -15,6 +15,7 @@ import com.gc.android_helper.core.Api;
 public class DialogManager {
 
     private static DialogManager dialogManager = null;
+    private Context context;
 
     public static DialogManager getInstance(Context context) {
         if (dialogManager == null) {
@@ -23,39 +24,48 @@ public class DialogManager {
         return dialogManager;
     }
 
-    private AlertDialog.Builder dialog = null;
+    private AlertDialog.Builder alertDialog = null;
+    private AlertDialog.Builder confirmDialog = null;
+    private AlertDialog.Builder promptDialog = null;
+    private AlertDialog.Builder listDialog = null;
 
     private DialogManager(Context context) {
-        dialog = new AlertDialog.Builder(context);
+        this.context = context;
     }
 
     public void alert(String title, String message, OnClickListener onClickListener) {
         // normalDialog.setIcon(R.drawable.icon_dialog);
-        dialog.setTitle(title);
-        dialog.setMessage(message);
-        dialog.setPositiveButton("确定", new DialogOnClickListener(onClickListener));
-        dialog.show();
+        if(alertDialog==null){
+            alertDialog = new AlertDialog.Builder(context);
+        }
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setPositiveButton("确定", new DialogOnClickListener(onClickListener));
+        alertDialog.show();
     }
 
     public void confirm(String title, String message, OnClickListener onClickListener) {
         // normalDialog.setIcon(R.drawable.icon_dialog);
-        dialog.setTitle("我是一个普通Dialog");
-        dialog.setMessage("你要点击哪一个按钮呢?");
-        dialog.setPositiveButton("确定",
+        if(confirmDialog==null){
+            confirmDialog = new AlertDialog.Builder(context);
+        }
+        confirmDialog.setTitle("我是一个普通Dialog");
+        confirmDialog.setMessage("你要点击哪一个按钮呢?");
+        confirmDialog.setPositiveButton("确定",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //...To-do
                     }
                 });
-        dialog.setNegativeButton("关闭",
+        confirmDialog.setNegativeButton("关闭",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //...To-do
                     }
                 });
-        dialog.show();
+        confirmDialog.show();
     }
 
     // DialogManager 对话框服务事件回调
