@@ -1,8 +1,8 @@
 package com.gc.android_helper.dialog;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.app.AlertDialog;
 
 import com.gc.android_helper.core.Api;
 
@@ -23,36 +23,60 @@ public class DialogManager {
         return dialogManager;
     }
 
-    private AlertDialog.Builder confirmDialog = null;
+    private AlertDialog.Builder dialog = null;
 
     private DialogManager(Context context) {
-        confirmDialog = new AlertDialog.Builder(context);
+        dialog = new AlertDialog.Builder(context);
     }
 
-    /*
-     * @setIcon 设置对话框图标
-     * @setTitle 设置对话框标题
-     * @setMessage 设置对话框消息提示 setXXX方法返回Dialog对象，因此可以链式设置属性
-     */
-    public void showConfirmDialog() {
+    public void alert(String title, String message, OnClickListener onClickListener) {
         // normalDialog.setIcon(R.drawable.icon_dialog);
-        confirmDialog.setTitle("我是一个普通Dialog");
-        confirmDialog.setMessage("你要点击哪一个按钮呢?");
-        confirmDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //TODO
-                Api.getInstance().toast(which+"");
+        dialog.setTitle(title);
+        dialog.setMessage(message);
+        dialog.setPositiveButton("确定", new DialogOnClickListener(onClickListener));
+        dialog.show();
+    }
+
+    public void confirm(String title, String message, OnClickListener onClickListener) {
+        // normalDialog.setIcon(R.drawable.icon_dialog);
+        dialog.setTitle("我是一个普通Dialog");
+        dialog.setMessage("你要点击哪一个按钮呢?");
+        dialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        dialog.setNegativeButton("关闭",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //...To-do
+                    }
+                });
+        dialog.show();
+    }
+
+    // DialogManager 对话框服务事件回调
+    public interface OnClickListener {
+        // 右上往下数1开始 or 由左往右数1开始
+        public void onClick(int position);
+    }
+
+    private class DialogOnClickListener implements DialogInterface.OnClickListener {
+
+        private OnClickListener onClickListener;
+
+        public DialogOnClickListener(OnClickListener onClickListener) {
+            this.onClickListener = onClickListener;
+        }
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            if (onClickListener != null) {
+                onClickListener.onClick(which);
             }
-        });
-        confirmDialog.setNegativeButton("关闭", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //TODO
-                Api.getInstance().toast(which+"");
-            }
-        });
-        // 显示
-        confirmDialog.show();
+        }
     }
 }

@@ -142,10 +142,10 @@ public class FirstPager extends BasePager<String> {
                     });
                 }
                 if (position == 2) {// alert
-
+                    DialogManager.getInstance(getActivity()).alert("hellow","hellow alert!",null);
                 }
                 if (position == 3) {// confirm
-                    DialogManager.getInstance(getActivity()).showConfirmDialog();
+                    DialogManager.getInstance(getActivity()).confirm(null,null,null);
                 }
                 if (position == 4) {// pickerview
                     PickerDialog.getInstance(getActivity().getWindow()).show(pickerParams);
