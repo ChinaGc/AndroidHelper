@@ -155,6 +155,9 @@ public class FirstPager extends BasePager<String> {
                 if (position == 4) {// pickerview
                     PickerDialog.getInstance(getActivity().getWindow()).show(pickerParams);
                 }
+                if (position == 5){
+                    DialogManager.getInstance(getActivity()).select("list",new String[]{"1","2","3","4"});
+                }
             }
         });
         return view;

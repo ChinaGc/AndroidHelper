@@ -57,9 +57,22 @@ public class DialogManager {
         confirmDialog.show();
     }
 
+    public void select(String title,String[] items) {
+        if(listDialog==null){
+            listDialog = new AlertDialog.Builder(context);
+        }
+        listDialog.setTitle(title);
+        listDialog.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Api.getInstance().toast(which+"");
+            }
+        });
+        listDialog.show();
+    }
     // DialogManager 对话框服务事件回调
     public interface OnClickListener {
-        // 右上往下数1开始 or 由左往右数1开始
+        // 右上往下数0开始 or 由左往右数0开始
         public void onClick(int position);
     }
 
@@ -75,9 +88,9 @@ public class DialogManager {
         public void onClick(DialogInterface dialog, int which) {
             if (onClickListener != null) {
                 if(which==-2){
-                    onClickListener.onClick(1);
+                    onClickListener.onClick(0);
                 }else if(which==-1){
-                    onClickListener.onClick(2);
+                    onClickListener.onClick(1);
                 }else{
                     onClickListener.onClick(which);
                 }
