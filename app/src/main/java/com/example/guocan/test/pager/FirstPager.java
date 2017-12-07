@@ -145,7 +145,12 @@ public class FirstPager extends BasePager<String> {
                     DialogManager.getInstance(getActivity()).alert("hellow","hellow alert!",null);
                 }
                 if (position == 3) {// confirm
-                    DialogManager.getInstance(getActivity()).confirm(null,null,null);
+                    DialogManager.getInstance(getActivity()).confirm("hellow", "hellow confirm?", new String[]{"确定", "取消"}, new DialogManager.OnClickListener() {
+                        @Override
+                        public void onClick(int position) {
+                            api.toast(position+"");
+                        }
+                    });
                 }
                 if (position == 4) {// pickerview
                     PickerDialog.getInstance(getActivity().getWindow()).show(pickerParams);

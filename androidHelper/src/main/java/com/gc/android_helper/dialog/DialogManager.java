@@ -44,27 +44,16 @@ public class DialogManager {
         alertDialog.show();
     }
 
-    public void confirm(String title, String message, OnClickListener onClickListener) {
+    public void confirm(String title, String message,String []button,OnClickListener onClickListener) {
+        DialogOnClickListener dialogOnClickListener = new DialogOnClickListener(onClickListener);
         // normalDialog.setIcon(R.drawable.icon_dialog);
         if(confirmDialog==null){
             confirmDialog = new AlertDialog.Builder(context);
         }
-        confirmDialog.setTitle("我是一个普通Dialog");
-        confirmDialog.setMessage("你要点击哪一个按钮呢?");
-        confirmDialog.setPositiveButton("确定",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //...To-do
-                    }
-                });
-        confirmDialog.setNegativeButton("关闭",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //...To-do
-                    }
-                });
+        confirmDialog.setTitle(title);
+        confirmDialog.setMessage(message);
+        confirmDialog.setPositiveButton(button[0],dialogOnClickListener);
+        confirmDialog.setNegativeButton(button[1],dialogOnClickListener);
         confirmDialog.show();
     }
 
@@ -85,7 +74,13 @@ public class DialogManager {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             if (onClickListener != null) {
-                onClickListener.onClick(which);
+                if(which==-2){
+                    onClickListener.onClick(1);
+                }else if(which==-1){
+                    onClickListener.onClick(2);
+                }else{
+                    onClickListener.onClick(which);
+                }
             }
         }
     }
