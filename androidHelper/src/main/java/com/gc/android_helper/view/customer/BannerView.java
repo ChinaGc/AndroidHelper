@@ -144,7 +144,7 @@ public class BannerView extends RelativeLayout{
 				downY = (int) ev.getY();
 				this.requestDisallowInterceptTouchEvent(true);
 				break;
-			case MotionEvent.ACTION_MOVE:;
+			case MotionEvent.ACTION_MOVE:
 				int moveX = (int) ev.getX();
 				int moveY = (int) ev.getY();
 				if(Math.abs(moveY-downY)>Math.abs(moveX-downX)){

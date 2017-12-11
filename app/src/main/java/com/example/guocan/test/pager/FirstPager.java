@@ -2,6 +2,7 @@ package com.example.guocan.test.pager;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.net.Uri;
@@ -79,7 +80,7 @@ public class FirstPager extends BasePager<String> {
     protected View createView() {
         view = View.inflate(context, R.layout.refresh_listview_test, null);
         bannerView = new BannerView(context);
-        final AbsListView.LayoutParams params = new AbsListView.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LengthUtil.dip2px(context, 240));
+        final AbsListView.LayoutParams params = new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, LengthUtil.dip2px(context, 240));
         bannerView.setLayoutParams(params);
         refresh_listview = (ListView) view.findViewById(R.id.refresh_listview);
         swiperefreshlayout = (VpSwipeRefreshLayout) view.findViewById(R.id.swiperefreshlayout);
@@ -156,7 +157,12 @@ public class FirstPager extends BasePager<String> {
                     PickerDialog.getInstance(getActivity().getWindow()).show(pickerParams);
                 }
                 if (position == 5){
-                    DialogManager.getInstance(getActivity()).select("list",new String[]{"1","2","3","4"});
+                    DialogManager.getInstance(getActivity()).select("list", new String[]{"1", "2", "3", "4"}, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            api.toast(String.valueOf(which));
+                        }
+                    });
                 }
             }
         });

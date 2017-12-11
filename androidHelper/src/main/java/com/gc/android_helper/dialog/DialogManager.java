@@ -57,17 +57,12 @@ public class DialogManager {
         confirmDialog.show();
     }
 
-    public void select(String title,String[] items) {
+    public void select(String title,String[] items,DialogInterface.OnClickListener onClickListener) {
         if(listDialog==null){
             listDialog = new AlertDialog.Builder(context);
         }
         listDialog.setTitle(title);
-        listDialog.setItems(items, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Api.getInstance().toast(which+"");
-            }
-        });
+        listDialog.setItems(items,onClickListener);
         listDialog.show();
     }
     // DialogManager 对话框服务事件回调
